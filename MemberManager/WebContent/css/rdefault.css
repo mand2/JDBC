@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	margin: 0px auto;
+	width: 960px;
+	margin-bottom: 20px;
+}
+
+header>h1 {
+	text-align: center;
+	line-height: 50px;
+	margin-bottom: 10px; 
+}
+
+header hr{
+	border-bottom: 1px solid #ccc;
+}
+
+section>div {
+	width: 960px;
+	margin: 0 auto; 
+}
+
+section table {
+	margin: 0 auto;
+	width: 600px;
+	border-collapse: collapse;
+}
+
+section tr{
+	height: 30px;
+}
+
+section td {
+	border: 1px solid #ccc;
+	padding : 5px;
+	line-height: 30px;
+}
+
+section td:nth-child(2n){
+	width: 70%;
+}
+
+section tr:last-child>td:last-child {
+	text-align: center;
+}
+
+input {
+	height: 25px;
+	line-height: 25px;
+}
+
+input[type="checkbox"]{
+	vertical-align: middle;
+}
+
+select {
+	height: 30px;
+	line-height: 30px;
+	width: 150px;
+}
