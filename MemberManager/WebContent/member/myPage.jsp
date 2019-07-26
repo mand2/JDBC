@@ -1,5 +1,5 @@
-<%@page import="member.LoginInfo"%>
-<%@page import="member.MemberVO"%>
+<%@page import="member.model.LoginInfo"%>
+<%@page import="member.model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

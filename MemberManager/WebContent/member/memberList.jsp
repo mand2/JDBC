@@ -1,15 +1,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Enumeration"%>
-<%@page import="member.MemberVO"%>
+<%@page import="member.model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%-- <%
-	Enumeration<String> e = application.getAttributeNames();
-%>
- --%>
-
-<jsp:useBean id="dao" class="member.MemberDAO" scope="session"/>
 
 <!DOCTYPE html>
 <html>
@@ -77,38 +70,20 @@
 				<td>관리</td>
 			</tr>
 			<!-- 리스트 반복 시작 -->
-
-				<%
-					ArrayList<MemberVO> list = dao.getALLMemberList();
-					for (MemberVO vo : list) {
-				%>
-
-				<tr>
-						<td><%= vo.getIdx() %></td>
-						<td><%= vo.getId() %></td>
-						<td><%= vo.getPw() %></td>
-						<td><%= vo.getName() %></td>
-						<td><%= vo.getPhoto() %></td>
-						<td><%= vo.getRegDate() %></td>
+			
+			<c:forEach items="${memList}" var="member">
+				<div>
+					<tr>
+						<td>${member.idx}</td>
+						<td>${member.id}</td>
+						<td>${member.pw}</td>
+						<td>${member.name}</td>
+						<td>${member.photo}</td>
+						<td>${member.regDate}</td>	
 						<td><span><a href="#">수정</a> | <a href="#">삭제</a></span></td>
 					</tr>
-				<%
-					}
-				%>
-				
-				
-				<!-- jstl -->
-				<%-- <c:forEach items="$ }">  
-				
-					<tr>
-						<td>${vo.idx}</td>
-						<td>${vo.id}</td>
-						<td>${vo.pw}</td>
-						<td>${vo.name}</td>
-						<td>${vo.photo}</td>
-						<td>${vo.regDate}</td>	
-					</tr>
-				</c:forEach> --%>
+				</div>
+			</c:forEach>
 			<!-- 리스트 반복 끝 -->
 			
 		</table>

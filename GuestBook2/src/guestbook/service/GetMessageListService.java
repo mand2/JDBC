@@ -1,25 +1,32 @@
 package guestbook.service;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import guestbook.dao.MessageDao;
 import guestbook.model.Message;
 import guestbook.model.MessageListView;
 import jdbc.ConnectionProvider;
 
-public class GetMessageListService {
+public class GetMessageListService implements GuestBookService {
 	
 	/*싱글톤*/
+	/*
 	private GetMessageListService() {}
 	private static GetMessageListService service = new GetMessageListService();
 	
 	public static GetMessageListService getInstance() {
 		return service;
 	}
+	*/
+	
 	
 	//1. 한 페이지에 보여줄 게시글의 개수
 	private static final int MESSAGE_COUNT_PER_PAGE = 3;
@@ -68,6 +75,34 @@ public class GetMessageListService {
 		
 		return view ;
 		
+	}
+
+
+	@Override
+	public String getViewName(HttpServletRequest request, HttpServletResponse response) {
+		
+		String viewName = "WEB-INF/view/list_view.jsp";
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		//사용자의 요청 받기
+		int pageNumber = 1;
+		String pageNo = request.getParameter("page");  //request에서 받아오는 페이지넘버
+		if(pageNo != null) {
+			pageNumber = Integer.parseInt(pageNo);
+		}
+		
+		//해당페이지의 게시글 list를 객체로 만들어줌
+		MessageListView viewData = getMessageListView(pageNumber);
+		
+		request.setAttribute("viewData", viewData);
+		
+		
+		return viewName;
 	}
 	
 	

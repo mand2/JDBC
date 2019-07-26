@@ -1,16 +1,14 @@
 <%@page import="util.CookieBox"%>
-<%@page import="member.MemberVO"%>
-<%@page import="member.LoginInfo"%>
+<%@page import="member.model.MemberVO"%>
+<%@page import="member.model.LoginInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%
 	request.setCharacterEncoding("utf-8");
 %>    
-
-<jsp:useBean id="vo" class="member.MemberVO" scope="session"/>
-<jsp:setProperty property="*" name="vo"/>
-<jsp:useBean id="dao" class="member.MemberDAO" scope="session"/>
-
+<%-- 
 <%
     	String userID = request.getParameter("id");
     	String userPW = request.getParameter("pw");
@@ -63,15 +61,55 @@
 		</script>
 	<% 
 		} 
-	%>
-	
-	
-<!-- 확인용으로 그냥 둠. -->
+	%> --%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인::YONNY's JOURNEY</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-<%-- 
-<jsp:useBean id="loginInfo" class="usebean.MemberInfo" scope="session"/>
-<jsp:setProperty property="id" value="<%=userID %>" name="loginInfo"/>
-<jsp:setProperty property="pw" value="<%=userPW %>" name="loginInfo"/> --%>
+<link href="/mm/css/default.css" rel="stylesheet" type="text/css">
+
+<style>
+	
+</style>
+</head>
+
+<body>
+<!-- header 시작 -->
+<%@ include file="../frame/header.jsp" %>
+<!-- header 끝-->
+	
+<!-- nav 시작 -->
+<%@ include file="../frame/nav.jsp" %>
+<!-- nav 끝-->
+
+<!-- contents 시작 -->
+	<div id="contents">
+		<h1>로그인체크</h1>
+		<hr>
+		
+		<c:if test="${loginChk}">
+			${sessionScope.sessionID}
+		
+		</c:if>
+		
+		
+		<c:if test="${!loginChk}">
+			${msg}
+		</c:if>
+	
+	
+	
+	</div>
+<!-- contents 끝-->
+
+<!-- footer 시작 -->
+<%@ include file="../frame/footer.jsp" %>
+<!-- footer 끝-->
+
 </body>
 
 </html>

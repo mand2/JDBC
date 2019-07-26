@@ -16,12 +16,12 @@
 		<!-- jstl 로 경로만들기 -->
 		<ul>
 			<li><a href="<c:url value='/'/>">홈</a></li>
-			<li><a href="<c:url value='/member/login.jsp'/>">로그인</a></li>
-			<li><a href="<c:url value='/member/memberRegForm.jsp'/>">회원가입</a></li>
+			<li><a href="<c:url value='loginForm'/>">로그인</a></li>
+			<li><a href="<c:url value='memRegForm'/>">회원가입</a></li>
 			<%-- <li><a href="<c:url value='//member/myPage.jsp'/>">MyPage1</a></li> --%>
-			<li><a href="<c:url value='//member/myPage2.jsp'/>">MyPage2</a></li>
-			<li><a href="<c:url value='/member/logout.jsp'/>">LOG OUT</a></li>
-			<li><a href="<c:url value='/member/memberList.jsp'/>">회원리스트</a></li>
+			<li><a href="<c:url value='myPage'/>">MyPage2</a></li>
+			<li><a href="<c:url value='logout'/>">LOG OUT</a></li>
+			<li><a href="<c:url value='memList'/>">회원리스트</a></li>
 		</ul>
 		
 </div>

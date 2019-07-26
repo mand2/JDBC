@@ -1,4 +1,4 @@
-<%@page import="member.LoginInfo"%>
+<%@page import="member.model.LoginInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -54,31 +54,34 @@ ${loginInfo}
 
 <!-- contents 시작 -->
 	<div id="contents" class = "main">
-	<h1>회원 정보</h1>
-	<hr>
+		<h1>회원 정보</h1>
+		<hr>
 
 	<!-- APPLICATION에서 가져온 값 -->
 	
 	<%-- ${sessionScope.loginInfo}<br>
 	<hr> --%>
-	<form>
-		<c:if test="${loginInfo ne null}">
-			<img src="../images/${loginInfo.photo}" width="70px" > <br>
-			<span class="inputBox">이 &nbsp; 름 : </span>${sessionScope.loginInfo.name} <br>
-		 	<span class="inputBox">아이디 : </span>${sessionScope.loginInfo.id} <br>
-		 	<span class="inputBox">가입일 : </span><fmt:formatDate value="${sessionScope.loginInfo.regDate}" pattern ="yyyy.MM.dd H:mm a" /><br> 
-	 	</c:if>
-	</form>
+		<form>
+			<c:if test="${sessionID ne null}">
+				<%-- <img src="../images/${loginInfo.photo}" width="70px" > <br> --%>
+				<span class="inputBox">	I D </span> ${loginInfo.id}<br>
+				<span class="inputBox">	P W </span>${loginInfo.pw}<br>
+				<span class="inputBox">NAME</span> ${loginInfo.name}<br>
+				<span class="inputBox">PHOTO</span>${loginInfo.photo}<br>
+				<span class="inputBox">regDate</span><fmt:formatDate value="${loginInfo.regDate}" pattern ="yyyy.MM.dd H:mm a" /><br>
+			</c:if>
+		</form>
+		
 	</div>
 <!-- contents 끝-->
 
 <!-- footer 시작 -->
 <%@ include file="../frame/footer.jsp" %>
 <!-- footer 끝-->
-	<c:if test="${loginInfo eq null }">
+	<c:if test="${sessionID eq null }">
 		<script>
 		alert ("로그인이 필요한 페이지 입니다.\n로그인 해 주세요");
-		location.href= "login.jsp";
+		location.href= "loginForm";
 	</script>
 	</c:if>
 </body>

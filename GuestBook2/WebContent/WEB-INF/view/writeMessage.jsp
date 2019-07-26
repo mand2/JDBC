@@ -22,7 +22,7 @@
 		</c:if>
 	</h1>
 	<a href="<c:url value="/guestList" />">list</a>
-
+                                                                                                                                                 
 
 </body>
 </html>

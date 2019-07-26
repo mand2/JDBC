@@ -1,4 +1,4 @@
-package guestbook.controller;
+package member.controller;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import guestbook.service.GuestBookService;
+import member.service.memberService;
 
 /**
  * Servlet implementation class FrontController
@@ -28,14 +28,12 @@ import guestbook.service.GuestBookService;
 				@WebInitParam(name = "config", value = "/WEB-INF/commandService.properties")
 		})
 public class FrontController extends HttpServlet {
-
-	//map 설정
-	private Map<String, GuestBookService> commands =
-			new HashMap<String, GuestBookService>();
+       
+	private Map<String, memberService> commands = new HashMap<String, memberService>();
 	
 	
 	public void init(ServletConfig config) throws ServletException {
-		
+
 		String configfile = config.getInitParameter("config");
 		Properties prop = new Properties();
 		
@@ -65,7 +63,7 @@ public class FrontController extends HttpServlet {
 			//-1 prop에 있는 클래스이름으로 인스턴스 생성필요
 			try {
 				Class serviceClass = Class.forName(serviceClassName);
-				GuestBookService service = (GuestBookService) serviceClass.newInstance();
+				memberService service = (memberService) serviceClass.newInstance();
 				
 				commands.put(command, service);
 				
@@ -76,30 +74,19 @@ public class FrontController extends HttpServlet {
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
-
 		
-		
-		
-		
-		
-		
-		}
-		
+		}//while
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * response.getWriter().append("Served at: ").append(request.getContextPath());
-		 */
+		
 		process(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		process(request, response);
-		/* doGet(request, response); */
 	}
 
-	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* 사용자요청분석
 		 * 사용자 요청에 맞는 모델실행 (서비스.메서드)실행 -> view페이지반환
@@ -122,8 +109,7 @@ public class FrontController extends HttpServlet {
 
 		//초기화
 		String viewPage="/WEB-INF/view/null.jsp";
-		
-		GuestBookService service = commands.get(commandUri); //값이 없으면 널null 처리됨.
+		memberService service = commands.get(commandUri); //값이 없으면 널null 처리됨.
 		
 		if(service != null) { //널이 아닐떄에만 실행하도록,,
 			viewPage = service.getViewName(request, response);
@@ -136,6 +122,6 @@ public class FrontController extends HttpServlet {
 		dispatcher.forward(request, response); //servletEx 던진다
 		
 		
-		
 	}
+
 }

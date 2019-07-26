@@ -1,5 +1,5 @@
 <%@page import="java.util.Enumeration"%>
-<%@page import="member.MemberVO"%>
+<%@page import="member.model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
